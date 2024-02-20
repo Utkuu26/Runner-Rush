@@ -7,34 +7,37 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float laneSwitchSpeed;
     private Animator animator;
+    static public bool canMove = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        StartRunningAnimation();
     }
 
     void Update()
     {
         //Start butonuna basıldıysa burayı çalıştırıcazç
-        transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
-        
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(canMove == true)
         {
-            if(this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
+            StartRunningAnimation();
+            transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
+            
+            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Translate(Vector3.left * Time.deltaTime * laneSwitchSpeed);
+                if(this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime * laneSwitchSpeed);
+                }
             }
-        }
 
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            if(this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
+            if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate(Vector3.right * Time.deltaTime * laneSwitchSpeed);
+                if(this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * laneSwitchSpeed);
+                }
             }
         }
-        
     }
 
      void StartRunningAnimation()
