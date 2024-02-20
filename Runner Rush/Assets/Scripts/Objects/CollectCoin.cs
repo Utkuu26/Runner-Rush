@@ -11,13 +11,4 @@ public class CollectCoin : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
