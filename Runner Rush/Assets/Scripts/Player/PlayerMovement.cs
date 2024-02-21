@@ -9,12 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight;
     private Animator animator;
     static public bool canMove = false;
-    public bool isJumping = false;
-    public bool isFalling = false;
+    private bool isJumping = false;
+    private bool isFalling = false;
+    private bool isSliding = false;
+    private bool isStanding = false;
+    private BoxCollider playerCollider;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -50,6 +54,16 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(JumpSequence());
                 }
             }
+
+            if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                if(isSliding == false)
+                {
+                    isSliding = true;
+                    animator.SetBool("isSlide", true); 
+                    StartCoroutine(SlideSequence());
+                }
+            }
         }
 
         if(isJumping == true)
@@ -61,6 +75,20 @@ public class PlayerMovement : MonoBehaviour
             if(isFalling == true)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * -jumpHeight, Space.World);
+            }
+        }
+
+        if(isSliding == true)
+        {
+            if(isStanding == false)
+            {
+                playerCollider.size = new Vector3(playerCollider.size.x, 0.5f, playerCollider.size.z);
+                playerCollider.center = new Vector3(playerCollider.center.x, 0.25f, playerCollider.center.z);
+            }
+            if(isStanding == true)
+            {
+                playerCollider.size = new Vector3(playerCollider.size.x, 1f, playerCollider.size.z);
+                playerCollider.center = new Vector3(playerCollider.center.x, 0.5f, playerCollider.center.z);
             }
         }
     }
@@ -75,6 +103,16 @@ public class PlayerMovement : MonoBehaviour
         isFalling = false;
         animator.SetBool("isJump", false); 
         transform.position = new Vector3(transform.position.x, initialPoseY, transform.position.z);
+    }
+
+    IEnumerator SlideSequence()
+    {
+        yield return new WaitForSeconds(0.6f);
+        isStanding = true;
+        yield return new WaitForSeconds(0.6f);
+        isSliding = false;
+        isStanding = false;
+        animator.SetBool("isSlide", false); 
     }
 
 }
