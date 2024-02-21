@@ -6,6 +6,7 @@ using TMPro;
 public class ScoreGame : MonoBehaviour
 {
    [SerializeField] private TextMeshProUGUI scoreDisplay;
+   [SerializeField] private TextMeshProUGUI endgameScoreDisplay;
    private int scoreAmount;
    public bool increaseDistance = false;
 
@@ -22,6 +23,7 @@ public class ScoreGame : MonoBehaviour
     {
         scoreAmount += 10;
         scoreDisplay.text = "Score: " + scoreAmount.ToString();
+        endgameScoreDisplay.text = "Score: " + scoreAmount.ToString();
         yield return new WaitForSeconds(0.4f);
         increaseDistance = false;
     }
