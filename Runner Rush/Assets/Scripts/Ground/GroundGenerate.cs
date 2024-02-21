@@ -28,7 +28,7 @@ public class GroundGenerate : MonoBehaviour
         partNo = Random.Range(0, 5);
         Instantiate(groundPart[partNo], new Vector3(0, 0, zPos), Quaternion.identity);
         zPos += 28;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         createGroundPart = false;
     }
 }

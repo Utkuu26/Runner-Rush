@@ -547,8 +547,6 @@ MonoBehaviour:
   moveSpeed: 7
   laneSwitchSpeed: 6
   jumpHeight: 8
-  isJumping: 0
-  isFalling: 0
 --- !u!54 &282255270
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -574,8 +572,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 372050187}
+  - component: {fileID: 372050188}
   m_Layer: 0
-  m_Name: GroundPart1
+  m_Name: GroundPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,6 +597,18 @@ Transform:
   m_Father: {fileID: 173031328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372050188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372050186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b143bcf68a5c1847aabbed3401650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &377632326
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,8 +990,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 550568158}
+  - component: {fileID: 550568159}
   m_Layer: 0
-  m_Name: GroundPart5
+  m_Name: GroundPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,6 +1015,18 @@ Transform:
   m_Father: {fileID: 173031328}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550568159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550568157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b143bcf68a5c1847aabbed3401650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &612866967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3313,8 +3337,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606889961}
+  - component: {fileID: 1606889962}
   m_Layer: 0
-  m_Name: GroundPart4
+  m_Name: GroundPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3337,6 +3362,18 @@ Transform:
   m_Father: {fileID: 173031328}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606889962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606889960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b143bcf68a5c1847aabbed3401650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1646762935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,8 +3675,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1680582652}
+  - component: {fileID: 1680582653}
   m_Layer: 0
-  m_Name: GroundPart3
+  m_Name: GroundPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3662,6 +3700,18 @@ Transform:
   m_Father: {fileID: 173031328}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680582653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680582651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b143bcf68a5c1847aabbed3401650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1695592883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4292,8 +4342,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930162319}
+  - component: {fileID: 1930162320}
   m_Layer: 0
-  m_Name: GroundPart2
+  m_Name: GroundPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4316,6 +4367,18 @@ Transform:
   m_Father: {fileID: 173031328}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930162320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930162318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b143bcf68a5c1847aabbed3401650b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1931985209
 GameObject:
   m_ObjectHideFlags: 0
