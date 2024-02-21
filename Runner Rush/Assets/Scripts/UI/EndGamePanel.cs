@@ -16,7 +16,7 @@ public class EndGamePanel : MonoBehaviour
 
     IEnumerator EndGameSequence()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         scoreArea.SetActive(false);
         endGamePanel.SetActive(true);
     }

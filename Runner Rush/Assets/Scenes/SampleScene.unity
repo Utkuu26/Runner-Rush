@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 194814563}
   - component: {fileID: 194814562}
   - component: {fileID: 194814561}
+  - component: {fileID: 194814564}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -281,7 +282,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194814559}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -336,6 +337,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194814559}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &194814564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194814559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d61f0546cc1f647a39bcaf75e88a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 282255264}
+  UIscoreArea: {fileID: 960197912}
+  EndgameArea: {fileID: 1588884824}
 --- !u!1 &220058153
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,8 +544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2123050d58b3244499aa113d4eff26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   laneSwitchSpeed: 6
+  jumpHeight: 8
+  isJumping: 0
+  isFalling: 0
 --- !u!54 &282255270
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1418,6 +1437,7 @@ GameObject:
   - component: {fileID: 788555634}
   - component: {fileID: 788555633}
   - component: {fileID: 788555632}
+  - component: {fileID: 788555635}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1448,7 +1468,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788555630}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1503,6 +1523,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788555630}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &788555635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788555630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d61f0546cc1f647a39bcaf75e88a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 282255264}
+  UIscoreArea: {fileID: 960197912}
+  EndgameArea: {fileID: 1588884824}
 --- !u!1 &793351143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,6 +1976,7 @@ GameObject:
   - component: {fileID: 940732271}
   - component: {fileID: 940732270}
   - component: {fileID: 940732269}
+  - component: {fileID: 940732272}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1971,7 +2007,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940732267}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2026,6 +2062,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940732267}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &940732272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940732267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d61f0546cc1f647a39bcaf75e88a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 282255264}
+  UIscoreArea: {fileID: 960197912}
+  EndgameArea: {fileID: 1588884824}
 --- !u!1 &957398870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,6 +2933,7 @@ GameObject:
   - component: {fileID: 1373742819}
   - component: {fileID: 1373742818}
   - component: {fileID: 1373742817}
+  - component: {fileID: 1373742820}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2912,7 +2964,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373742815}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2967,6 +3019,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373742815}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1373742820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373742815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d61f0546cc1f647a39bcaf75e88a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 282255264}
+  UIscoreArea: {fileID: 960197912}
+  EndgameArea: {fileID: 1588884824}
 --- !u!1 &1552334191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,6 +4407,7 @@ GameObject:
   - component: {fileID: 2117449592}
   - component: {fileID: 2117449591}
   - component: {fileID: 2117449590}
+  - component: {fileID: 2117449593}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4370,7 +4438,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117449588}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -4425,6 +4493,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117449588}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2117449593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117449588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d61f0546cc1f647a39bcaf75e88a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 282255264}
+  UIscoreArea: {fileID: 960197912}
+  EndgameArea: {fileID: 1588884824}
 --- !u!1 &2124764505
 GameObject:
   m_ObjectHideFlags: 0
