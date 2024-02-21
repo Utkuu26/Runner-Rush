@@ -68,14 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(isJumping == true)
         {
-            if(isFalling == false)
-            {
-                transform.Translate(Vector3.up * Time.deltaTime * jumpHeight, Space.World);
-            }
-            if(isFalling == true)
-            {
-                transform.Translate(Vector3.up * Time.deltaTime * -jumpHeight, Space.World);
-            }
+            transform.Translate(Vector3.up * Time.deltaTime * jumpHeight, Space.World);
         }
 
         if(isSliding == true)
@@ -95,14 +88,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator JumpSequence()
     {
-        float initialPoseY = transform.position.y;
-        yield return new WaitForSeconds(0.6f);
-        isFalling = true;
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1f);
         isJumping = false;
-        isFalling = false;
         animator.SetBool("isJump", false); 
-        transform.position = new Vector3(transform.position.x, initialPoseY, transform.position.z);
     }
 
     IEnumerator SlideSequence()
