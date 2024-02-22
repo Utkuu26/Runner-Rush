@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRun", true);
             transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
             
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
                 {
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 if (this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
                 {
