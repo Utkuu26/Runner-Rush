@@ -8,11 +8,6 @@ public class GroundBoundaries : MonoBehaviour
     public static float rightBoundary = 3f;
     public float leftBounValue;
     public float rightBounValue;
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

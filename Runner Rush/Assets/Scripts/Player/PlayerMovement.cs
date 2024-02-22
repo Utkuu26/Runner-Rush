@@ -29,19 +29,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRun", true);
             transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
             
-            if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                if(this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
+                if (this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
                 {
-                    transform.Translate(Vector3.left * Time.deltaTime * laneSwitchSpeed);
+                    float newX = Mathf.Clamp(transform.position.x - 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
+                    transform.position = new Vector3(newX, transform.position.y, transform.position.z);
                 }
             }
 
-            if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                if(this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
+                if (this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
                 {
-                    transform.Translate(Vector3.right * Time.deltaTime * laneSwitchSpeed);
+                    float newX = Mathf.Clamp(transform.position.x + 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
+                    transform.position = new Vector3(newX, transform.position.y, transform.position.z);
                 }
             }
 
