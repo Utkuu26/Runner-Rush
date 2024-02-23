@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float initialMoveSpeed = 5f; // Başlangıç hareket hızı
     [SerializeField] private float laneSwitchSpeed;
     [SerializeField] private float jumpHeight;
     private Animator animator;
@@ -14,14 +14,29 @@ public class PlayerMovement : MonoBehaviour
     private bool isStanding = false;
     private BoxCollider playerCollider;
 
+    [SerializeField] private float speedIncreaseInterval = 5f; // Hız artış aralığı
+    [SerializeField] private float speedIncreaseAmount = 0.5f; // Hız artış miktarı
+    private float moveSpeed; // Güncel hareket hızı
+    private float speedIncreaseTimer; // Hız artışı için sayaç
+
     void Start()
     {
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider>();
+        moveSpeed = initialMoveSpeed; // Başlangıç hareket hızını atayın
+        speedIncreaseTimer = speedIncreaseInterval; // Hız artışı sayaçını başlatın
     }
 
     void Update()
     {
+        // Hız artışı zamanlayıcısını güncelleyin
+        speedIncreaseTimer -= Time.deltaTime;
+        if (speedIncreaseTimer <= 0f)
+        {
+            moveSpeed += speedIncreaseAmount; // Hız artışını uygula
+            speedIncreaseTimer = speedIncreaseInterval; // Sayaçı sıfırla
+        }
+
         //Start butonuna basıldıysa burayı çalıştırıcazç
         if(canMove == true)
         {
@@ -30,20 +45,14 @@ public class PlayerMovement : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (this.gameObject.transform.position.x > GroundBoundaries.leftBoundary)
-                {
-                    float newX = Mathf.Clamp(transform.position.x - 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
-                    transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-                }
+                float newX = Mathf.Clamp(transform.position.x - 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
+                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
             }
 
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (this.gameObject.transform.position.x < GroundBoundaries.rightBoundary)
-                {
-                    float newX = Mathf.Clamp(transform.position.x + 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
-                    transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-                }
+                float newX = Mathf.Clamp(transform.position.x + 3f, GroundBoundaries.leftBoundary, GroundBoundaries.rightBoundary);
+                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
             }
 
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
@@ -103,5 +112,4 @@ public class PlayerMovement : MonoBehaviour
         isStanding = false;
         animator.SetBool("isSlide", false); 
     }
-
 }

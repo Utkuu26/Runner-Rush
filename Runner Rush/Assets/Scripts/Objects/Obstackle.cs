@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Obstackle : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject UIscoreArea;
-    [SerializeField] private GameObject EndgameArea;
+    public GameObject player;
+    public GameObject UIscoreArea;
+    public GameObject Start_EndGame;
+
+    void Start() 
+    {
+        player = GameObject.Find("Player");
+        UIscoreArea = GameObject.Find("UIscoreArea");
+        Start_EndGame = GameObject.Find("Start_EndGame");
+    }
 
     void OnTriggerEnter(Collider other) 
     {
@@ -14,7 +21,7 @@ public class Obstackle : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<Animator>().Play("HittingAnim");
         UIscoreArea.GetComponent<ScoreGame>().enabled = false;
-        EndgameArea.GetComponent<EndGamePanel>().enabled = true;
+        Start_EndGame.GetComponent<EndGamePanel>().enabled = true;
     }
 
 }

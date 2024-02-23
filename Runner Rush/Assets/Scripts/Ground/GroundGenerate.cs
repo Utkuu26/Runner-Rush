@@ -7,7 +7,7 @@ public class GroundGenerate : MonoBehaviour
     public ObjectPool objectPool;
     public List<GameObject> activeGroundParts = new List<GameObject>();
     public int maxGroundParts = 5;
-    public float spawnInterval = 5f;
+    public float spawnInterval = 2f;
     private float currentInterval = 0f;
 
     private float zPos = 28f; // Z pozisyonu
@@ -49,7 +49,7 @@ public class GroundGenerate : MonoBehaviour
 
     IEnumerator ReturnGroundPartCoroutine(GameObject groundPart)
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
         objectPool.ReturnGroundPartToPool(groundPart);
         activeGroundParts.Remove(groundPart);
     }

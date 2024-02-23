@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &173031328
 Transform:
   m_ObjectHideFlags: 0
@@ -156,6 +156,8 @@ Transform:
   - {fileID: 1930162319}
   - {fileID: 1606889961}
   - {fileID: 550568158}
+  - {fileID: 8177665087226242818}
+  - {fileID: 7274415317302853625}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -370,9 +372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2123050d58b3244499aa113d4eff26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
+  initialMoveSpeed: 5
   laneSwitchSpeed: 5
-  jumpHeight: 10
+  jumpHeight: 8
+  speedIncreaseInterval: 2
+  speedIncreaseAmount: 0.5
 --- !u!54 &282255270
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1638,8 +1642,8 @@ GameObject:
   - component: {fileID: 960197915}
   - component: {fileID: 960197914}
   m_Layer: 0
-  m_Name: UIScoreArea
-  m_TagString: Untagged
+  m_Name: UIscoreArea
+  m_TagString: UIscoreArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2537,8 +2541,8 @@ GameObject:
   - component: {fileID: 1588884826}
   - component: {fileID: 1588884827}
   m_Layer: 0
-  m_Name: Start&EndGame
-  m_TagString: Untagged
+  m_Name: Start_EndGame
+  m_TagString: Start_EndGame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3447,6 +3451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1045401375514670, guid: f11fc98cf1e8d5547a9b2ec85cc9c664, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4111819248598986, guid: f11fc98cf1e8d5547a9b2ec85cc9c664, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3862,7 +3870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 2124764509}
   activeGroundParts: []
-  maxGroundParts: 4
+  maxGroundParts: 6
   spawnInterval: 2
 --- !u!114 &2124764507
 MonoBehaviour:
@@ -3910,6 +3918,8 @@ MonoBehaviour:
   - {fileID: 4386196257578959961, guid: 6a40f35259f8ba746beea52b0f0d80a1, type: 3}
   - {fileID: 6749795248006543950, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
   - {fileID: 8190086260905124874, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
+  - {fileID: 840172066373533991, guid: 651185b214520434787d8179fd163316, type: 3}
+  - {fileID: 8555468886013657188, guid: becbcf9bd051eb54ca2910c8da0bea1f, type: 3}
   - {fileID: 1104021573592885357, guid: 65476d47e1e48154ab7fc8bcad93245c, type: 3}
   pooledGroundParts: []
   activeGroundPartIndexes: 
@@ -4004,16 +4014,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173031328}
     m_Modifications:
-    - target: {fileID: 1104021573592885355, guid: 65476d47e1e48154ab7fc8bcad93245c,
-        type: 3}
-      propertyPath: objectPool
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1104021573592885355, guid: 65476d47e1e48154ab7fc8bcad93245c,
-        type: 3}
-      propertyPath: poolManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1104021573592885356, guid: 65476d47e1e48154ab7fc8bcad93245c,
         type: 3}
       propertyPath: m_RootOrder
@@ -4074,24 +4074,239 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundPart
       objectReference: {fileID: 0}
-    - target: {fileID: 1104021574013568532, guid: 65476d47e1e48154ab7fc8bcad93245c,
+    - target: {fileID: 4797401535132914549, guid: 65476d47e1e48154ab7fc8bcad93245c,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 282255264}
-    - target: {fileID: 1104021574013568532, guid: 65476d47e1e48154ab7fc8bcad93245c,
+    - target: {fileID: 4797401535132914549, guid: 65476d47e1e48154ab7fc8bcad93245c,
         type: 3}
       propertyPath: EndgameArea
       value: 
       objectReference: {fileID: 1588884824}
-    - target: {fileID: 1104021574013568532, guid: 65476d47e1e48154ab7fc8bcad93245c,
+    - target: {fileID: 4797401535132914549, guid: 65476d47e1e48154ab7fc8bcad93245c,
         type: 3}
       propertyPath: UIscoreArea
       value: 
       objectReference: {fileID: 960197912}
-    m_RemovedComponents:
-    - {fileID: 1104021573592885355, guid: 65476d47e1e48154ab7fc8bcad93245c, type: 3}
+    - target: {fileID: 5895456645334164693, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5895456645334164693, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5895456645334164693, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8173364048145074184, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8173364048145074184, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8173364048145074184, guid: 65476d47e1e48154ab7fc8bcad93245c,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65476d47e1e48154ab7fc8bcad93245c, type: 3}
+--- !u!1001 &1317526847608553372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 173031328}
+    m_Modifications:
+    - target: {fileID: 523592773, guid: becbcf9bd051eb54ca2910c8da0bea1f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 523592773, guid: becbcf9bd051eb54ca2910c8da0bea1f, type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 523592773, guid: becbcf9bd051eb54ca2910c8da0bea1f, type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 3046079643655853068, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 3046079643655853068, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 3046079643655853068, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 3046079645165115579, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 3046079645165115579, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 3046079645165115579, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 3046079645373725961, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 3046079645373725961, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 3046079645373725961, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 5850477257791734001, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5850477257791734001, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5850477257791734001, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 5850477258213760923, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5850477258213760923, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5850477258213760923, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6610792972432957184, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6610792972432957184, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6610792972432957184, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6610792973032258082, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6610792973032258082, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6610792973032258082, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8555468886013657188, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_Name
+      value: GroundPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: becbcf9bd051eb54ca2910c8da0bea1f, type: 3}
 --- !u!1001 &1904707399246549472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4174,31 +4389,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173031328}
     m_Modifications:
-    - target: {fileID: 4386196257527956398, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+    - target: {fileID: 804775659475283846, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 282255264}
-    - target: {fileID: 4386196257527956398, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+    - target: {fileID: 804775659475283846, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
       propertyPath: EndgameArea
       value: 
       objectReference: {fileID: 1588884824}
-    - target: {fileID: 4386196257527956398, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+    - target: {fileID: 804775659475283846, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
       propertyPath: UIscoreArea
       value: 
       objectReference: {fileID: 960197912}
-    - target: {fileID: 4386196257578959943, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+    - target: {fileID: 804775659856408812, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
-      propertyPath: objectPool
+      propertyPath: player
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4386196257578959943, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 804775659856408812, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
-      propertyPath: poolManager
+      propertyPath: EndgameArea
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 804775659856408812, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
     - target: {fileID: 4386196257578959960, guid: 6a40f35259f8ba746beea52b0f0d80a1,
         type: 3}
       propertyPath: m_RootOrder
@@ -4259,8 +4479,82 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundPart
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4386196257578959943, guid: 6a40f35259f8ba746beea52b0f0d80a1, type: 3}
+    - target: {fileID: 6871699563286922140, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6871699563286922140, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6871699563286922140, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6871699564015068862, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6871699564015068862, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6871699564015068862, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 7054141002210754239, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 7054141002210754239, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 7054141002210754239, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8767510090112681881, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8767510090112681881, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8767510090112681881, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8881867202869012572, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8881867202869012572, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8881867202869012572, guid: 6a40f35259f8ba746beea52b0f0d80a1,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a40f35259f8ba746beea52b0f0d80a1, type: 3}
 --- !u!1001 &5091318394109505916
 PrefabInstance:
@@ -4269,6 +4563,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173031328}
     m_Modifications:
+    - target: {fileID: 1921661043260712428, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 1921661043260712428, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 1921661043260712428, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
     - target: {fileID: 5091318394580670080, guid: 56292318ceb658649a889261b1705e63,
         type: 3}
       propertyPath: m_RootOrder
@@ -4324,38 +4633,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5091318394580670081, guid: 56292318ceb658649a889261b1705e63,
-        type: 3}
-      propertyPath: objectPool
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5091318394580670081, guid: 56292318ceb658649a889261b1705e63,
-        type: 3}
-      propertyPath: poolManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5091318394580670087, guid: 56292318ceb658649a889261b1705e63,
         type: 3}
       propertyPath: m_Name
       value: GroundPart
       objectReference: {fileID: 0}
-    - target: {fileID: 5091318394904287128, guid: 56292318ceb658649a889261b1705e63,
+    - target: {fileID: 5182870371436209006, guid: 56292318ceb658649a889261b1705e63,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 282255264}
-    - target: {fileID: 5091318394904287128, guid: 56292318ceb658649a889261b1705e63,
+    - target: {fileID: 5182870371436209006, guid: 56292318ceb658649a889261b1705e63,
         type: 3}
       propertyPath: EndgameArea
       value: 
       objectReference: {fileID: 1588884824}
-    - target: {fileID: 5091318394904287128, guid: 56292318ceb658649a889261b1705e63,
+    - target: {fileID: 5182870371436209006, guid: 56292318ceb658649a889261b1705e63,
         type: 3}
       propertyPath: UIscoreArea
       value: 
       objectReference: {fileID: 960197912}
-    m_RemovedComponents:
-    - {fileID: 5091318394580670081, guid: 56292318ceb658649a889261b1705e63, type: 3}
+    - target: {fileID: 6180160761406772174, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6180160761406772174, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6180160761406772174, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8190507296505758521, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8190507296505758521, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8190507296505758521, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 9161190240007664968, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 9161190240007664968, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 9161190240007664968, guid: 56292318ceb658649a889261b1705e63,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56292318ceb658649a889261b1705e63, type: 3}
 --- !u!1001 &5363471806264735152
 PrefabInstance:
@@ -4469,16 +4812,108 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173031328}
     m_Modifications:
-    - target: {fileID: 6749795248006543948, guid: 993bcaf6590c3d040a9327a319e510c0,
-        type: 3}
-      propertyPath: objectPool
+    - target: {fileID: 1896106385, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6749795248006543948, guid: 993bcaf6590c3d040a9327a319e510c0,
-        type: 3}
-      propertyPath: poolManager
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 1896106385, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
+      propertyPath: EndgameArea
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 1896106385, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 1431992265368353627, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 1431992265368353627, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 1431992265368353627, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 2675470300561663659, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 2675470300561663659, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 2675470300561663659, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 2675470300887696153, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 2675470300887696153, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 2675470300887696153, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 2675470300999543324, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 2675470300999543324, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 2675470300999543324, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 4566451135018467862, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 4566451135018467862, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 4566451135018467862, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 5481719193737691766, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5481719193737691766, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5481719193737691766, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
     - target: {fileID: 6749795248006543950, guid: 993bcaf6590c3d040a9327a319e510c0,
         type: 3}
       propertyPath: m_Name
@@ -4539,24 +4974,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6749795249420708290, guid: 993bcaf6590c3d040a9327a319e510c0,
+    - target: {fileID: 8457352380190078656, guid: 993bcaf6590c3d040a9327a319e510c0,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 282255264}
-    - target: {fileID: 6749795249420708290, guid: 993bcaf6590c3d040a9327a319e510c0,
+    - target: {fileID: 8457352380190078656, guid: 993bcaf6590c3d040a9327a319e510c0,
         type: 3}
       propertyPath: EndgameArea
       value: 
       objectReference: {fileID: 1588884824}
-    - target: {fileID: 6749795249420708290, guid: 993bcaf6590c3d040a9327a319e510c0,
+    - target: {fileID: 8457352380190078656, guid: 993bcaf6590c3d040a9327a319e510c0,
         type: 3}
       propertyPath: UIscoreArea
       value: 
       objectReference: {fileID: 960197912}
-    m_RemovedComponents:
-    - {fileID: 6749795248006543948, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
+    - target: {fileID: 8457352381023352555, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8457352381023352555, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8457352381023352555, guid: 993bcaf6590c3d040a9327a319e510c0,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993bcaf6590c3d040a9327a319e510c0, type: 3}
+--- !u!4 &7274415317302853625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8555468886013657189, guid: becbcf9bd051eb54ca2910c8da0bea1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317526847608553372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8177665087226242818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+    type: 3}
+  m_PrefabInstance: {fileID: 8850702582832522788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8190086260381951191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4564,31 +5025,123 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173031328}
     m_Modifications:
-    - target: {fileID: 8190086260783434663, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+    - target: {fileID: 324537633, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 324537633, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 324537633, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 2152034137526984868, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 282255264}
-    - target: {fileID: 8190086260783434663, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+    - target: {fileID: 2152034137526984868, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
       propertyPath: EndgameArea
       value: 
       objectReference: {fileID: 1588884824}
-    - target: {fileID: 8190086260783434663, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+    - target: {fileID: 2152034137526984868, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
       propertyPath: UIscoreArea
       value: 
       objectReference: {fileID: 960197912}
-    - target: {fileID: 8190086260905124872, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+    - target: {fileID: 2925014115947209568, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
-      propertyPath: objectPool
+      propertyPath: player
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8190086260905124872, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 2925014115947209568, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
-      propertyPath: poolManager
+      propertyPath: EndgameArea
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 2925014115947209568, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6133416902869197118, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6133416902869197118, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6133416902869197118, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6950336387055323324, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6950336387055323324, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6950336387055323324, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6950336387796057034, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6950336387796057034, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6950336387796057034, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6950336388447731018, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6950336388447731018, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6950336388447731018, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6995860105034560384, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6995860105034560384, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6995860105034560384, guid: 8dd13e51806ba7b479755c5f2b957b0b,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
     - target: {fileID: 8190086260905124873, guid: 8dd13e51806ba7b479755c5f2b957b0b,
         type: 3}
       propertyPath: m_RootOrder
@@ -4649,8 +5202,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundPart
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8190086260905124872, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dd13e51806ba7b479755c5f2b957b0b, type: 3}
 --- !u!1001 &8690531829188829574
 PrefabInstance:
@@ -4726,3 +5278,147 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b811ef1a0b6de4d85e42f858d0fec4, type: 3}
+--- !u!1001 &8850702582832522788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 173031328}
+    m_Modifications:
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533990, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840172066373533991, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: m_Name
+      value: GroundPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073703588140382783, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5073703588140382783, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5073703588140382783, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 5450159504970186595, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5450159504970186595, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5450159504970186595, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 5450159505294285377, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 5450159505294285377, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 5450159505294285377, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 6136857467673529759, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 6136857467673529759, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 6136857467673529759, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    - target: {fileID: 8473309957584544066, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 282255264}
+    - target: {fileID: 8473309957584544066, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: EndgameArea
+      value: 
+      objectReference: {fileID: 1588884824}
+    - target: {fileID: 8473309957584544066, guid: 651185b214520434787d8179fd163316,
+        type: 3}
+      propertyPath: UIscoreArea
+      value: 
+      objectReference: {fileID: 960197912}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 651185b214520434787d8179fd163316, type: 3}
