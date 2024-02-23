@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     static public bool canMove = false;
     private bool isJumping = false;
-    private bool isFalling = false;
     private bool isSliding = false;
     private bool isStanding = false;
     private BoxCollider playerCollider;

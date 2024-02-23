@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class GroundDestroyer : MonoBehaviour
-{
-    private string parentObjectName;
+// public class GroundDestroyer : MonoBehaviour
+// {
+//     private string parentObjectName;
+//     [SerializeField] private ObjectPool objectPool;
 
-    void Update()
-    {
-        parentObjectName = transform.name;
-        StartCoroutine(DestroyGround());
-    }
+//     void OnEnable()
+//     {
+//         StartCoroutine(DestroyGround());
+//     }
 
-    IEnumerator DestroyGround()
-    {
-        yield return new WaitForSeconds(13);
-        if(parentObjectName == "GroundPart(Clone)")
-        {
-            Destroy(gameObject);
-        }
-    }
-}
+//     IEnumerator DestroyGround()
+//     {
+//         yield return new WaitForSeconds(30);
+//         objectPool.ReturnGroundPartToPool(gameObject);
+//     }
+// }

@@ -4,31 +4,53 @@ using UnityEngine;
 
 public class GroundGenerate : MonoBehaviour
 {
-    [SerializeField] private GameObject[] groundPart;
-    [SerializeField] private int zPos;
-    private bool createGroundPart = false;
-    private int partNo;
+    public ObjectPool objectPool;
+    public List<GameObject> activeGroundParts = new List<GameObject>();
+    public int maxGroundParts = 5;
+    public float spawnInterval = 5f;
+    private float currentInterval = 0f;
+
+    private float zPos = 28f; // Z pozisyonu
 
     void Start()
     {
-        
+        objectPool = FindObjectOfType<ObjectPool>();
+        if (objectPool == null)
+        {
+            Debug.LogError("ObjectPool component is not found in the scene!");
+        }
     }
 
     void Update()
     {
-        if(createGroundPart == false)
+        currentInterval += Time.deltaTime;
+        if (currentInterval >= spawnInterval)
         {
-            createGroundPart = true;
-            StartCoroutine(GenerateGround());
+            currentInterval = 0f;
+            SpawnGroundPart();
         }
     }
 
-    IEnumerator GenerateGround()
+    void SpawnGroundPart()
     {
-        partNo = Random.Range(0, 5);
-        Instantiate(groundPart[partNo], new Vector3(0, 0, zPos), Quaternion.identity);
-        zPos += 28;
-        yield return new WaitForSeconds(2);
-        createGroundPart = false;
+        if (activeGroundParts.Count < maxGroundParts)
+        {
+            GameObject groundPartObject = objectPool.GetRandomGroundPart();
+            if (groundPartObject != null)
+            {
+                groundPartObject.transform.position = new Vector3(0, 0, zPos); // Z pozisyonunu ayarla
+                zPos += 28; // Z pozisyonunu artır
+                activeGroundParts.Add(groundPartObject);
+                groundPartObject.SetActive(true);
+                StartCoroutine(ReturnGroundPartCoroutine(groundPartObject));
+            }
+        }
+    }
+
+    IEnumerator ReturnGroundPartCoroutine(GameObject groundPart)
+    {
+        yield return new WaitForSeconds(10f);
+        objectPool.ReturnGroundPartToPool(groundPart);
+        activeGroundParts.Remove(groundPart);
     }
 }
