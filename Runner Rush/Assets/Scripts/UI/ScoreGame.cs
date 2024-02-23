@@ -16,9 +16,7 @@ public class ScoreGame : MonoBehaviour
    void Start()
    {
         scoreAmount = 0;
-        // PlayerPrefs.GetInt() sadece bir kez çağrılmalı ve kaydedilen değer alınmalı
         highestScore = PlayerPrefs.GetInt("HighestScore", highestScore);
-        // Alınan değer, highScoreDisplay içinde gösterilmeli
         highScoreDisplay.text = "High Score: " + highestScore.ToString();
    }
 
@@ -30,7 +28,6 @@ public class ScoreGame : MonoBehaviour
             StartCoroutine(IncreaseDistance()); 
         }
 
-        // Her güncelleme döngüsünde en yüksek skoru kontrol ederek ekrana yazdır
         if (highestScore != PlayerPrefs.GetInt("HighestScore", highestScore))
         {
             highestScore = PlayerPrefs.GetInt("HighestScore", highestScore);
