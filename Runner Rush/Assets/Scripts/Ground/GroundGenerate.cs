@@ -44,7 +44,7 @@ public class GroundGenerate : MonoBehaviour
 
     IEnumerator ReturnGroundPartCoroutine(GameObject groundPart)
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(15f);
         objectPool.ReturnGroundPartToPool(groundPart);
         activeGroundParts.Remove(groundPart);
     }
