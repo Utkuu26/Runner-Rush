@@ -17,11 +17,14 @@ public class Obstackle : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        this.gameObject.GetComponent<BoxCollider>().enabled = false;
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<Animator>().Play("HittingAnim");
-        UIscoreArea.GetComponent<ScoreGame>().enabled = false;
-        Start_EndGame.GetComponent<EndGamePanel>().enabled = true;
+        if (other.CompareTag("Player"))
+        {
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<Animator>().Play("HittingAnim");
+            UIscoreArea.GetComponent<ScoreGame>().enabled = false;
+            Start_EndGame.GetComponent<EndGamePanel>().enabled = true;
+        }
     }
 
 }

@@ -21,16 +21,13 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetRandomGroundPart()
     {
-        // Get a random index from the pool of ground parts
         int randomIndex = Random.Range(0, groundPartPrefabs.Length);
-        
-        // Check if the ground part is not already active
+
         while (activeGroundPartIndexes.Contains(randomIndex))
         {
             randomIndex = Random.Range(0, groundPartPrefabs.Length);
         }
 
-        // Set the ground part as active and return it
         GameObject groundPart = pooledGroundParts[randomIndex];
         activeGroundPartIndexes.Add(randomIndex);
         return groundPart;

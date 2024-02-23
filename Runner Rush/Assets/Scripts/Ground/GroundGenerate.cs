@@ -9,16 +9,11 @@ public class GroundGenerate : MonoBehaviour
     public int maxGroundParts = 5;
     public float spawnInterval = 2f;
     private float currentInterval = 0f;
-
-    private float zPos = 28f; // Z pozisyonu
+    private float zPos = 28f; 
 
     void Start()
     {
         objectPool = FindObjectOfType<ObjectPool>();
-        if (objectPool == null)
-        {
-            Debug.LogError("ObjectPool component is not found in the scene!");
-        }
     }
 
     void Update()
@@ -38,8 +33,8 @@ public class GroundGenerate : MonoBehaviour
             GameObject groundPartObject = objectPool.GetRandomGroundPart();
             if (groundPartObject != null)
             {
-                groundPartObject.transform.position = new Vector3(0, 0, zPos); // Z pozisyonunu ayarla
-                zPos += 28; // Z pozisyonunu artır
+                groundPartObject.transform.position = new Vector3(0, 0, zPos); 
+                zPos += 28; 
                 activeGroundParts.Add(groundPartObject);
                 groundPartObject.SetActive(true);
                 StartCoroutine(ReturnGroundPartCoroutine(groundPartObject));
